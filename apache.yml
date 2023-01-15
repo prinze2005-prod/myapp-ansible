@@ -1,18 +1,24 @@
 ---
-- hosts: webservers 
-  become: True
+- name: Install Visual Studio Code on Ubuntu
+  hosts: all
+  become: yes
   tasks:
-    - name: Install packages
-      yum:
-        name: "httpd"
-        state: "present"
-    - name: Start Apache server
-      service:
-        name: httpd
-        state: started
-        enabled: True
-    - name: Deploy static website
-      copy:
-        src: index.html
-        dest: /var/www/html/
-...
+    - name: Add the Microsoft GPG key to the system
+      apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+
+    - name: Add the Visual Studio Code repository to the system
+      apt_repository:
+        repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+        state: present
+
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Install Visual Studio Code
+      apt:
+        name: code
+        state: present
+

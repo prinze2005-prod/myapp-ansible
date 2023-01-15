@@ -1,6 +1,6 @@
 ---
 - name: Install Visual Studio Code on Ubuntu
-  hosts: all
+  hosts: node
   become: yes
   tasks:
     - name: Add the Microsoft GPG key to the system

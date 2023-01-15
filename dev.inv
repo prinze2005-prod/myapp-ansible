@@ -1,6 +1,5 @@
 
 [node-2]
 172.31.4.154   ansible_user=ubuntu  
-[node]
-172.31.21.89  ansible_user=ubuntu  
+ 
 
